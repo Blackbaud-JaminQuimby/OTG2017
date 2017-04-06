@@ -21,7 +21,10 @@ export class OfflineModeComponent {
     { id: '7', column1: 707, column2: 'Strawberry', column3: 'Sally eats strawberries' }
   ]);
 
-  constructor(private af: AngularFire, private modal: SkyModalService) { }
+  constructor(private af: AngularFire, private modal: SkyModalService) {
+    const tasks = af.database.list('tasks');
+    tasks.push('new item');
+  }
 
   public openModal(type: string) {
     let context = new OfflineModeContext();
