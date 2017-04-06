@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { expect, SkyAppTestModule } from '@blackbaud/skyux-builder/runtime/testing/browser';
 
 // Component we're going to test
-import { AboutComponent } from './about.component';
+import { OfflineFirstComponent } from './offlineFirst.component';
 
-describe('About component', () => {
+describe('offlineFirst component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,7 +15,7 @@ describe('About component', () => {
   it('should display a new teammate when one is added', () => {
     const name = 'Blackbaud';
     const email = 'no-reply@blackbaud.com';
-    const fixture = TestBed.createComponent(AboutComponent);
+    const fixture = TestBed.createComponent(OfflineFirstComponent);
 
     fixture.componentInstance.team.push({
       name: 'Blackbaud',
@@ -25,7 +25,7 @@ describe('About component', () => {
     fixture.detectChanges();
 
     const el = fixture.nativeElement;
-    const lastTeamEl = el.querySelector('.template-about-teams .template-about-team:last-child');
+    const lastTeamEl = el.querySelector('.template-offlineFirst-teams .template-offlineFirst-team:last-child');
     const namesEl = lastTeamEl.querySelector('sky-key-info-value');
     const emailsEl = lastTeamEl.querySelector('sky-key-info-label');
 

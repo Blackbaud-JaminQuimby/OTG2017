@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-about',
-  templateUrl: './about.component.html'
+  selector: 'my-offlinefirst',
+  templateUrl: './offlinefirst.component.html'
 })
-export class AboutComponent {
+export class OfflineFirstComponent {
   public team = [
     {
       name: 'Robert Hernandez',
