@@ -3,10 +3,10 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'my-offlinefirst',
-  templateUrl: './offlinefirst.component.html'
+  selector: 'my-offlinemode',
+  templateUrl: './offlinemode.component.html'
 })
-export class OfflineFirstComponent {
+export class OfflineModeComponent {
 
  public items: Observable<Array<any>> = Observable.of([
     { id: '1', column1: 101, column2: 'Apple', column3: 'Anne eats apples' },
