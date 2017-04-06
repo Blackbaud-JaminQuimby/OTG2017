@@ -8,7 +8,5 @@ import { OfflineModeContext } from './offlinemode.context';
   templateUrl: './offlinemodemodal.component.html'
 })
 export class OfflineModeModalComponent {
-  public title = 'Hello world';
-
   constructor(public context: OfflineModeContext, public instance: SkyModalInstance) { }
 }

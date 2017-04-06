@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
+import { OfflineModeModalComponent } from './offlinemode/offlinemodemodal.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAiHb8ByUNWBdeKZWIZyUapBMxSggLiJIg',
@@ -15,6 +16,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
-  entryComponents: []
+  entryComponents: [
+    OfflineModeModalComponent
+    ]
 })
 export class AppExtrasModule { }

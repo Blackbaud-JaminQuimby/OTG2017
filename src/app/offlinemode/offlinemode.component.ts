@@ -13,11 +13,23 @@ import { OfflineModeModalComponent } from './offlinemodemodal.component';
 export class OfflineModeComponent {
   public tasks: FirebaseListObservable<any>;
   public items: BehaviorSubject<Array<any>> = new BehaviorSubject([]);
+  public nItems: Array<any> = [];
+  constructor(
+    private af: AngularFire,
+    private modal: SkyModalService) {
+    this.tasks = af.database.list('/tasks', { preserveSnapshot: true });
+    this.tasks.subscribe(data => {
+      this.nItems = [];
+      data.forEach(x => {
+        this.nItems.push({
+            'id': x.key,
+            'person': x.val().person,
+            'task': x.val().task,
+            'description': x.val().description
+          });
 
-  constructor(private af: AngularFire, private modal: SkyModalService) {
-    this.tasks = af.database.list('tasks');
-    this.tasks.first().subscribe(x => {
-      this.items.next(x);
+      });
+      this.items.next(this.nItems);
     });
   }
 
@@ -34,6 +46,12 @@ export class OfflineModeComponent {
 
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
       console.log('Modal closed with reason: ' + result.reason + ' and data: ' + result.data);
+      console.log(result.data.description)
+      this.tasks.push({
+        'person': result.data.person || '',
+        'task': result.data.task || '',
+        'description': result.data.description || ''
+      });
     });
   }
 }
