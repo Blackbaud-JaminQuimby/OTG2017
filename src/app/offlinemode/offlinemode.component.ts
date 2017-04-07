@@ -7,8 +7,6 @@ import { OfflineModeContext } from './offlinemode.context';
 import { OfflineModeModalComponent } from './offlinemodemodal.component';
 import * as toolbox from 'sw-toolbox';
 
-
-
 @Component({
   selector: 'my-offlinemode',
   templateUrl: './offlinemode.component.html'
@@ -44,21 +42,18 @@ export class OfflineModeComponent {
         });
 
       });
-      this.items.next(this.nItems);
+      this.items.next(this.nItems.reverse());
     });
   }
 
-
   public openModal(type: string) {
     let context = new OfflineModeContext();
-
     let windowMode: any = {
       'defaultModal': {
         'providers': [{ provide: OfflineModeContext, useValue: context }]
       }
     };
     let modalInstance = this.modal.open(OfflineModeModalComponent, windowMode[type]);
-
     modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
       console.log('Modal closed with reason: ' + result.reason + ' and data: ' + result.data);
       console.log(result.data.description)
