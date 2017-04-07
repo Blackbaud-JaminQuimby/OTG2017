@@ -7,5 +7,15 @@ module.exports = {
   ],
   root: 'dist',
   stripPrefix: 'dist/',
-  navigateFallback: '/index.html'
+  navigateFallback: '/index.html',
+  runtimeCaching: [{
+  urlPattern: /otg2017-f4d23\.firebaseapp\.com/,
+  handler: 'cacheFirst',
+      options: {
+        cache: {
+          maxEntries: 10,
+          name: 'runtime-cache'
+        }
+      }
+}]
 };

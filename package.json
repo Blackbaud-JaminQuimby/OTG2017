@@ -17,7 +17,8 @@
   "dependencies": {
     "@blackbaud/skyux": "2.0.0-beta.11",
     "angularfire2": "^2.0.0-beta.8",
-    "firebase": "^3.7.5"
+    "firebase": "^3.7.5",
+    "sw-toolbox": "^3.6.0"
   },
   "devDependencies": {
     "@blackbaud/skyux-builder": "1.0.0-beta.13",

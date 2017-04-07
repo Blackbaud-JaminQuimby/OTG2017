@@ -20,7 +20,7 @@ export class OfflineModeComponent {
     this.tasks = af.database.list('/tasks', { preserveSnapshot: true });
     this.tasks.subscribe(data => {
       this.nItems = [];
-      data.forEach(x => {
+      data.forEach((x: any) => {
         this.nItems.push({
             'id': x.key,
             'person': x.val().person,
