@@ -5,6 +5,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { SkyModalService, SkyModalCloseArgs } from '@blackbaud/skyux/dist/core';
 import { OfflineModeContext } from './offlinemode.context';
 import { OfflineModeModalComponent } from './offlinemodemodal.component';
+import * as toolbox from 'sw-toolbox';
+
+
 
 @Component({
   selector: 'my-offlinemode',
@@ -17,16 +20,28 @@ export class OfflineModeComponent {
   constructor(
     private af: AngularFire,
     private modal: SkyModalService) {
+    toolbox.options.debug = false;
+    toolbox.router.post('(.*)', toolbox.networkFirst);
+    toolbox.router.get('/offlinemode(.*)', toolbox.networkFirst, {
+      debug: false,
+      networkTimeoutSeconds: 4,
+      cache: {
+        name: 'offlinemode-cache-v1',
+        maxEntries: 10,
+        maxAgeSeconds: 200
+      }
+    });
+
     this.tasks = af.database.list('/tasks', { preserveSnapshot: true });
     this.tasks.subscribe(data => {
       this.nItems = [];
       data.forEach((x: any) => {
         this.nItems.push({
-            'id': x.key,
-            'person': x.val().person,
-            'task': x.val().task,
-            'description': x.val().description
-          });
+          'id': x.key,
+          'person': x.val().person,
+          'task': x.val().task,
+          'description': x.val().description
+        });
 
       });
       this.items.next(this.nItems);
