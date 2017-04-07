@@ -14,7 +14,7 @@ module.exports = {
   handler: 'cacheFirst',
       options: {
         cache: {
-          maxEntries: 10,
+          maxEntries: 1000,
           name: 'runtime-cache'
         }
       }
